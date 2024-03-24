@@ -6,3 +6,67 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id            Int            @id @default(autoincrement())
+  userName      String
+  email         String         @unique
+  password      String
+  isAdmin       Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  wishListItems WishListItem[]
+  orders        Orders[]
+  ratings       Rating[]
+  cartItems     CartItem[]
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  price       Float
+  category    String
+  description String?
+  image       String?
+  quantity    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ratings     Rating[]
+}
+
+model Rating {
+  id        Int     @id @default(autoincrement())
+  rating    Float
+  count     Int
+  productId Int     @unique
+  product   Product @relation(fields: [productId], references: [id])
+  User      User?   @relation(fields: [userId], references: [id])
+  userId    Int?
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
+  Orders    Orders?  @relation(fields: [ordersId], references: [id])
+  ordersId  Int?
+}
+
+model WishListItem {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
+}
+
+model Orders {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  User      User?      @relation(fields: [userId], references: [id])
+  userId    Int?
+  cartItems CartItem[]
+}
