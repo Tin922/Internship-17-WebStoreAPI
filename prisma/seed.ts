@@ -37,17 +37,16 @@ async function main() {
     },
   });
   const product2 = await prisma.product.upsert({
-    where: { title: 'Mens Casual Premium Slim Fit T-Shirts ' },
+    where: { title: 'Mens Casual Slim Fit' },
     update: {},
     create: {
-      title: 'Mens Casual Premium Slim Fit T-Shirts ',
-      price: 22.3,
+      title: 'Mens Casual Slim Fit',
+      price: 15.99,
       category: "men's clothing",
       description:
-        'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
-      image:
-        'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-      quantity: 10,
+        'The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.',
+      image: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg',
+      quantity: 11,
     },
   });
   const product3 = await prisma.product.upsert({
@@ -69,6 +68,49 @@ async function main() {
     create: {
       userId: user1.id,
       productId: product1.id,
+    },
+  });
+  const cartItem1 = await prisma.cartItem.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      userId: user1.id,
+      productId: product2.id,
+    },
+  });
+  const cartItem2 = await prisma.cartItem.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      userId: user1.id,
+      productId: product3.id,
+    },
+  });
+
+  const rating1 = await prisma.rating.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      rating: 5,
+      userId: user1.id,
+      productId: product3.id,
+    },
+  });
+  const rating2 = await prisma.rating.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      rating: 4,
+      userId: user1.id,
+      productId: product2.id,
+    },
+  });
+
+  const order1 = await prisma.orders.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      userId: user1.id,
     },
   });
 }
