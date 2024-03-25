@@ -29,4 +29,15 @@ export class ProductsService {
   remove(id: number) {
     return `This action removes a #${id} product`;
   }
+
+  async findByName(name: string) {
+    return this.prisma.product.findMany({
+      where: {
+        title: {
+          contains: name,
+          mode: 'insensitive',
+        },
+      },
+    });
+  }
 }

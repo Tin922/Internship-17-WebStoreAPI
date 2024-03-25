@@ -46,4 +46,8 @@ export class ProductsController {
   remove(@Param('id') id: string) {
     return this.productsService.remove(+id);
   }
+  @Get('search/:name')
+  async searchByName(@Param('name') name: string) {
+    return this.productsService.findByName(name);
+  }
 }
