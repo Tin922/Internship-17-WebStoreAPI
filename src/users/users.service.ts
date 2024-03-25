@@ -23,7 +23,21 @@ export class UsersService {
     return this.prisma.user.update({ where: { id }, data: updateUserDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    await this.prisma.orders.deleteMany({
+      where: { id },
+    });
+    await this.prisma.cartItem.deleteMany({
+      where: { id },
+    });
+    await this.prisma.rating.deleteMany({
+      where: { id },
+    });
+    await this.prisma.wishListItem.deleteMany({
+      where: { id },
+    });
+    return this.prisma.user.delete({
+      where: { id: id },
+    });
   }
 }
