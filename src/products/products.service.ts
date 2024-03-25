@@ -26,8 +26,19 @@ export class ProductsService {
     });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: number) {
+    await this.prisma.rating.deleteMany({
+      where: { productId: id },
+    });
+    await this.prisma.cartItem.deleteMany({
+      where: { productId: id },
+    });
+    await this.prisma.wishListItem.deleteMany({
+      where: { productId: id },
+    });
+    return this.prisma.product.delete({
+      where: { id },
+    });
   }
 
   async findByName(name: string) {
