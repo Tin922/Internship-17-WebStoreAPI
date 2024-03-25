@@ -50,7 +50,7 @@ async function main() {
     },
   });
   const product3 = await prisma.product.upsert({
-    where: { title: '"Mens Cotton Jacket"' },
+    where: { title: 'Mens Cotton Jacket' },
     update: {},
     create: {
       title: 'Mens Cotton Jacket',
@@ -68,22 +68,6 @@ async function main() {
     create: {
       userId: user1.id,
       productId: product1.id,
-    },
-  });
-  const cartItem1 = await prisma.cartItem.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      userId: user1.id,
-      productId: product2.id,
-    },
-  });
-  const cartItem2 = await prisma.cartItem.upsert({
-    where: { id: 2 },
-    update: {},
-    create: {
-      userId: user1.id,
-      productId: product3.id,
     },
   });
 
@@ -111,6 +95,24 @@ async function main() {
     update: {},
     create: {
       userId: user1.id,
+    },
+  });
+  const cartItem1 = await prisma.cartItem.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      userId: user1.id,
+      productId: product2.id,
+      ordersId: order1.id,
+    },
+  });
+  const cartItem2 = await prisma.cartItem.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      userId: user1.id,
+      productId: product3.id,
+      ordersId: order1.id,
     },
   });
 }
