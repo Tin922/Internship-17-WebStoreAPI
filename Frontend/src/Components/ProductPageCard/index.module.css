@@ -1,0 +1,30 @@
+.product_card_outer_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+}
+.product_card {
+  display: flex;
+  min-height: 350px;
+}
+.product_card_photo {
+  width: 400px;
+  height: 100%;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+.product_card_photo img {
+  width: 100%;
+  height: 100%;
+}
+.product_card_content {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.product_card p {
+  line-height: 1.4;
+}

@@ -1,0 +1,13 @@
+.products_list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.recommended {
+  text-align: center;
+  margin: 70px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
