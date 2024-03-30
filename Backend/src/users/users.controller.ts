@@ -12,11 +12,24 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
+import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('users')
 @ApiTags('Users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Post('register')
+  register(@Body() { userName, email, password }: RegisterDto) {
+    return this.usersService.register(userName, email, password);
+  }
+
+  @Post('login')
+  login(@Body() { userName, email, password }: LoginDto) {
+    return this.usersService.login(userName, email, password);
+  }
+
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
   create(@Body() createUserDto: CreateUserDto) {
