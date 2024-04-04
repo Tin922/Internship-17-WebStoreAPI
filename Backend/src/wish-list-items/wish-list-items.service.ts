@@ -22,14 +22,18 @@ export class WishListItemsService {
     });
   }
 
-  update(id: number, updateWishListItemDto: UpdateWishListItemDto) {
+  update(
+    id: number,
+    updateWishListItemDto: UpdateWishListItemDto,
+    userId: number,
+  ) {
     return this.prisma.wishListItem.update({
-      where: { id },
+      where: { id, userId },
       data: updateWishListItemDto,
     });
   }
 
-  remove(id: number) {
-    return this.prisma.wishListItem.delete({ where: { id } });
+  remove(id: number, userId: number) {
+    return this.prisma.wishListItem.delete({ where: { id, userId } });
   }
 }

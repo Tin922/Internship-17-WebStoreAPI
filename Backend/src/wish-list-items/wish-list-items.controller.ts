@@ -45,18 +45,21 @@ export class WishListItemsController {
     return this.wishListItemsService.findOne(id, user.id);
   }
 
+  @UseGuards(UserAuthGuard)
   @Patch(':id')
   @ApiOkResponse({ type: WishListItemEntity })
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateWishListItemDto: UpdateWishListItemDto,
+    @Req() { user },
   ) {
-    return this.wishListItemsService.update(+id, updateWishListItemDto);
+    return this.wishListItemsService.update(id, updateWishListItemDto, user.id);
   }
 
+  @UseGuards(UserAuthGuard)
   @Delete(':id')
   @ApiOkResponse({ type: WishListItemEntity })
-  remove(@Param('id') id: string) {
-    return this.wishListItemsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number, @Req() { user }) {
+    return this.wishListItemsService.remove(id, user.id);
   }
 }
