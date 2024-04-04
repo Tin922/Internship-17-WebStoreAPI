@@ -11,16 +11,19 @@ export class RatingsService {
     return this.prisma.rating.create({ data: createRatingDto });
   }
 
-  findAll() {
-    return this.prisma.rating.findMany();
+  findAll(userId: number) {
+    return this.prisma.rating.findMany({ where: { userId } });
   }
 
-  findOne(id: number) {
-    return this.prisma.rating.findUnique({ where: { id } });
+  findOne(id: number, userId: number) {
+    return this.prisma.rating.findUnique({ where: { id, userId } });
   }
 
-  update(id: number, updateRatingDto: UpdateRatingDto) {
-    return this.prisma.rating.update({ where: { id }, data: updateRatingDto });
+  update(id: number, updateRatingDto: UpdateRatingDto, userId: number) {
+    return this.prisma.rating.update({
+      where: { id, userId },
+      data: updateRatingDto,
+    });
   }
 
   remove(id: number) {
