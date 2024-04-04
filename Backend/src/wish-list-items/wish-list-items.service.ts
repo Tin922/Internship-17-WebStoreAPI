@@ -16,8 +16,10 @@ export class WishListItemsService {
     return this.prisma.wishListItem.findMany({ where: { userId } });
   }
 
-  findOne(id: number) {
-    return this.prisma.wishListItem.findUnique({ where: { id } });
+  findOne(productId: number, userId: number) {
+    return this.prisma.wishListItem.findUnique({
+      where: { id: productId, userId },
+    });
   }
 
   update(id: number, updateWishListItemDto: UpdateWishListItemDto) {

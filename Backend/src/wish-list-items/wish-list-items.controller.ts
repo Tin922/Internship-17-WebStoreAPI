@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Req,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { WishListItemsService } from './wish-list-items.service';
 import { CreateWishListItemDto } from './dto/create-wish-list-item.dto';
@@ -38,9 +39,10 @@ export class WishListItemsController {
     return this.wishListItemsService.findAll(user.id);
   }
 
+  @UseGuards(UserAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.wishListItemsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number, @Req() { user }) {
+    return this.wishListItemsService.findOne(id, user.id);
   }
 
   @Patch(':id')
