@@ -6,28 +6,36 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { WishListItemsService } from './wish-list-items.service';
 import { CreateWishListItemDto } from './dto/create-wish-list-item.dto';
 import { UpdateWishListItemDto } from './dto/update-wish-list-item.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { WishListItemEntity } from './entities/wish-list-item.entity';
+import { UserAuthGuard } from 'src/users/user-auth.guard';
 
 @Controller('wish-list-items')
 @ApiTags('WishList')
 export class WishListItemsController {
   constructor(private readonly wishListItemsService: WishListItemsService) {}
 
+  @UseGuards(UserAuthGuard)
   @Post()
   @ApiCreatedResponse({ type: WishListItemEntity })
-  create(@Body() createWishListItemDto: CreateWishListItemDto) {
-    return this.wishListItemsService.create(createWishListItemDto);
+  create(
+    @Req() { user },
+    @Body() createWishListItemDto: CreateWishListItemDto,
+  ) {
+    return this.wishListItemsService.create(user.id, createWishListItemDto);
   }
 
+  @UseGuards(UserAuthGuard)
   @Get()
   @ApiOkResponse({ type: WishListItemEntity, isArray: true })
-  findAll() {
-    return this.wishListItemsService.findAll();
+  findAll(@Req() { user }) {
+    return this.wishListItemsService.findAll(user.id);
   }
 
   @Get(':id')
