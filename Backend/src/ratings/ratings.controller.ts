@@ -22,10 +22,11 @@ import { UserAuthGuard } from 'src/users/user-auth.guard';
 export class RatingsController {
   constructor(private readonly ratingsService: RatingsService) {}
 
+  @UseGuards(UserAuthGuard)
   @Post()
   @ApiCreatedResponse({ type: RatingEntity })
-  create(@Body() createRatingDto: CreateRatingDto) {
-    return this.ratingsService.create(createRatingDto);
+  create(@Body() createRatingDto: CreateRatingDto, @Req() { user }) {
+    return this.ratingsService.create(createRatingDto, user.id);
   }
 
   @UseGuards(UserAuthGuard)
@@ -53,9 +54,10 @@ export class RatingsController {
     return this.ratingsService.update(id, updateRatingDto, user.id);
   }
 
+  @UseGuards(UserAuthGuard)
   @Delete(':id')
   @ApiOkResponse({ type: RatingEntity })
-  remove(@Param('id') id: string) {
-    return this.ratingsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number, @Req() { user }) {
+    return this.ratingsService.remove(id, user.id);
   }
 }

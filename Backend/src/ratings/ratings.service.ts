@@ -7,8 +7,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class RatingsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createRatingDto: CreateRatingDto) {
-    return this.prisma.rating.create({ data: createRatingDto });
+  create(createRatingDto: CreateRatingDto, userId: number) {
+    return this.prisma.rating.create({ data: { ...createRatingDto, userId } });
   }
 
   findAll(userId: number) {
@@ -26,7 +26,7 @@ export class RatingsService {
     });
   }
 
-  remove(id: number) {
-    return this.prisma.rating.delete({ where: { id } });
+  remove(id: number, userId: number) {
+    return this.prisma.rating.delete({ where: { id, userId } });
   }
 }
