@@ -9,6 +9,7 @@ import HomePage from "./Pages/HomePage/HomePage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import AuthenticationLayout from "./Layouts/Authentication/AuthenticationLayout";
+import WishlistPage from "./Pages/WishlistPage/WishlistPage";
 
 function App() {
   return (
@@ -18,11 +19,14 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/products" element={<ProductsPage />} />
           <Route exact path="/product/:productId" element={<ProductPage />} />
+          <Route exact path="/wishlist" element={<WishlistPage />} />
         </Route>
+
         <Route element={<AuthenticationLayout />}>
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/login" element={<LoginPage />} />
         </Route>
+
         <Route exact path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
