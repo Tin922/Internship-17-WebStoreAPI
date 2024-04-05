@@ -29,3 +29,17 @@
 .form button:hover {
   background-color: #0056b3;
 }
+
+.login {
+  margin-top: 10px;
+}
+
+.login a {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login a:hover {
+  color: #0056b3;
+}

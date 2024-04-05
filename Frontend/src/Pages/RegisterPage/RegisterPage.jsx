@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./index.module.css";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +41,10 @@ const RegisterPage = () => {
         />
 
         <button type="submit">Register</button>
+        <div className={classes.login}>
+          Already have an account?{" "}
+          <a onClick={() => navigate("/login")}>Login</a>
+        </div>
       </form>
     </div>
   );
