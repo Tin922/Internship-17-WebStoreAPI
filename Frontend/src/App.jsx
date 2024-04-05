@@ -10,11 +10,12 @@ import LoginPage from "./Pages/LoginPage/LoginPage";
 function App() {
   return (
     <Router>
-      <Search />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/products" element={<ProductsPage />} />
-        <Route exact path="/product/:productId" element={<ProductPage />} />
+        <Route element={<Search />}>
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/products" element={<ProductsPage />} />
+          <Route exact path="/product/:productId" element={<ProductPage />} />
+        </Route>
         <Route exact path="/register" element={<Registerpage />} />
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="*" element={<NotFoundPage />} />
