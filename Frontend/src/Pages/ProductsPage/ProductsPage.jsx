@@ -17,7 +17,7 @@ function ProductsPage() {
         const response = await fetch(`https://fakestoreapi.com/products`);
         const data = await response.json();
         const filteredProducts = data.filter((item) =>
-          item.title.toLowerCase().includes(searchTerm)
+          item.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setInitialFetchProducts(filteredProducts);
         setProducts(filteredProducts);
