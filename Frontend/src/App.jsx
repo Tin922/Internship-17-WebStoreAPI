@@ -10,6 +10,7 @@ import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import AuthenticationLayout from "./Layouts/Authentication/AuthenticationLayout";
 import WishlistPage from "./Pages/WishlistPage/WishlistPage";
+import CartPage from "./Pages/CartPage/CartPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/products" element={<ProductsPage />} />
           <Route exact path="/product/:productId" element={<ProductPage />} />
           <Route exact path="/wishlist" element={<WishlistPage />} />
+          <Route exact path="/cart" element={<CartPage />} />
         </Route>
 
         <Route element={<AuthenticationLayout />}>
