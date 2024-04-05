@@ -6,16 +6,18 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class CartItemsService {
   constructor(private prisma: PrismaService) {}
-  create(createCartItemDto: CreateCartItemDto) {
-    return this.prisma.cartItem.create({ data: createCartItemDto });
+  create(createCartItemDto: CreateCartItemDto, userId: number) {
+    return this.prisma.cartItem.create({
+      data: { ...createCartItemDto, userId },
+    });
   }
 
-  findAll() {
-    return this.prisma.cartItem.findMany();
+  findAll(userId: number) {
+    return this.prisma.cartItem.findMany({ where: { userId } });
   }
 
-  findOne(id: number) {
-    return this.prisma.cartItem.findUnique({ where: { id } });
+  findOne(id: number, userId: number) {
+    return this.prisma.cartItem.findUnique({ where: { id, userId } });
   }
 
   update(id: number, updateCartItemDto: UpdateCartItemDto) {
