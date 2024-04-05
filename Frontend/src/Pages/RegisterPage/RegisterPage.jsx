@@ -14,39 +14,36 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <form className={classes.form} onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <form className={classes.form} onSubmit={handleSubmit}>
+      <label htmlFor="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <label htmlFor="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-        <button type="submit">Register</button>
-        <div className={classes.login}>
-          Already have an account?{" "}
-          <a onClick={() => navigate("/login")}>Login</a>
-        </div>
-      </form>
-    </div>
+      <button type="submit">Register</button>
+      <div className={classes.login}>
+        Already have an account? <a onClick={() => navigate("/login")}>Login</a>
+      </div>
+    </form>
   );
 };
 

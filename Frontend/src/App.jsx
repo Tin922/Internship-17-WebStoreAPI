@@ -8,6 +8,7 @@ import ProductPage from "./Pages/ProductPage/ProductPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
+import AuthenticationLayout from "./Layouts/Authentication/AuthenticationLayout";
 
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
           <Route exact path="/products" element={<ProductsPage />} />
           <Route exact path="/product/:productId" element={<ProductPage />} />
         </Route>
-        <Route exact path="/register" element={<RegisterPage />} />
-        <Route exact path="/login" element={<LoginPage />} />
+        <Route element={<AuthenticationLayout />}>
+          <Route exact path="/register" element={<RegisterPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+        </Route>
         <Route exact path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
