@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import Search from "./Components/Search/Search";
+import Search from "./Layouts/Search/Search";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage";
 import ProductsPage from "./Pages/ProductsPage/ProductsPage";
