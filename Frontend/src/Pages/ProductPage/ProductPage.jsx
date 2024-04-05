@@ -29,11 +29,13 @@ const ProductPage = () => {
   };
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`, { state: { relatedProducts } });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   useEffect(() => {
     fetchProduct();
     fetchRelatedProducts();
   }, [location.state]);
+
   return (
     <>
       {product && <ProductPageCard product={product} />}
