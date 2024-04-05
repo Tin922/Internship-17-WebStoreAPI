@@ -51,7 +51,7 @@ function ProductsPage() {
           onChange={(e) => setCategory(e.target.value)}
           value={category}
         >
-          <option value="">Sve</option>
+          <option value="">All</option>
           <option value="Men's clothing">Men's clothing</option>
           <option value="Women's clothing">Women's clothing</option>
           <option value="Jewelery">Jewelery</option>
@@ -60,7 +60,7 @@ function ProductsPage() {
       </div>
       <div className={classes.products_list}>
         {products.length === 0 ? (
-          <p>Nema rezultata za traženu pretragu</p>
+          <p>No results found for the requested search</p>
         ) : (
           products.map((product) => (
             <ProductCard
