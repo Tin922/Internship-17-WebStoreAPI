@@ -43,18 +43,21 @@ export class CartItemsController {
     return this.cartItemsService.findOne(id, user.id);
   }
 
+  @UseGuards(UserAuthGuard)
   @Patch(':id')
   @ApiOkResponse({ type: CartItemEntity })
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateCartItemDto: UpdateCartItemDto,
+    @Req() { user },
   ) {
-    return this.cartItemsService.update(+id, updateCartItemDto);
+    return this.cartItemsService.update(id, updateCartItemDto, user.id);
   }
 
+  @UseGuards(UserAuthGuard)
   @Delete(':id')
   @ApiOkResponse({ type: CartItemEntity })
-  remove(@Param('id') id: string) {
-    return this.cartItemsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number, @Req() { user }) {
+    return this.cartItemsService.remove(id, user.id);
   }
 }

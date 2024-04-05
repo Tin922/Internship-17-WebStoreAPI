@@ -20,14 +20,14 @@ export class CartItemsService {
     return this.prisma.cartItem.findUnique({ where: { id, userId } });
   }
 
-  update(id: number, updateCartItemDto: UpdateCartItemDto) {
+  update(id: number, updateCartItemDto: UpdateCartItemDto, userId: number) {
     return this.prisma.cartItem.update({
-      where: { id },
+      where: { id, userId },
       data: updateCartItemDto,
     });
   }
 
-  remove(id: number) {
-    return this.prisma.cartItem.delete({ where: { id } });
+  remove(id: number, userId: number) {
+    return this.prisma.cartItem.delete({ where: { id, userId } });
   }
 }
