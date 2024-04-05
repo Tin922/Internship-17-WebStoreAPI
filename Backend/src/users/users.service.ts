@@ -17,10 +17,6 @@ export class UsersService {
   ) {}
 
   async register(userName: string, email: string, password: string) {
-    if (!userName) throw new BadRequestException('userName not defined');
-    if (!email) throw new BadRequestException('Email not defined');
-    if (!password) throw new BadRequestException('Password not defined');
-
     const existingUser = await this.prisma.user.findUnique({
       where: { email },
     });
@@ -48,10 +44,6 @@ export class UsersService {
   }
 
   async login(userName: string, email: string, password: string) {
-    if (!userName) throw new BadRequestException('userName not defined');
-    if (!email) throw new BadRequestException('Email not defined');
-    if (!password) throw new BadRequestException('Password not defined');
-
     const user = await this.prisma.user.findUnique({
       where: { email },
     });
