@@ -13,6 +13,10 @@ const ProductPageCard = ({ product }) => {
           <p>
             Ocjena: {product.rating.rate} ({product.rating.count})
           </p>
+          <div className={classes.button_container}>
+            <button>Add to cart</button>
+            <button>Add to Wishlist</button>
+          </div>
         </div>
       </div>
     </div>
