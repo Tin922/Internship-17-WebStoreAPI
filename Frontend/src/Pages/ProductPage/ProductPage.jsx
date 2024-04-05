@@ -39,7 +39,7 @@ const ProductPage = () => {
   return (
     <>
       {product && <ProductPageCard product={product} />}
-      <p className={classes.recommended}>Možda će vam se svidjeti</p>
+      <p className={classes.recommended}>You might like</p>
       <div className={classes.products_list}>
         {relatedProducts.map((product) => (
           <ProductCard

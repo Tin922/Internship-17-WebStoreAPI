@@ -16,8 +16,8 @@ const HomePage = () => {
   };
   return (
     <>
-      <h1>Početna stranica</h1>
-      <h2>Svi proizvodi</h2>
+      <h1>Home Page</h1>
+      <h2>All products</h2>
       <div className={classes.products_list}>
         {products.map((product) => (
           <ProductCard

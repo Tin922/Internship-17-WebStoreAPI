@@ -9,9 +9,9 @@ const ProductPageCard = ({ product }) => {
         <div className={classes.product_card_content}>
           <h3>{product.title}</h3>
           <p>{product.description}</p>
-          <p>Cijena: {product.price} €</p>
+          <p>Price: {product.price} €</p>
           <p>
-            Ocjena: {product.rating.rate} ({product.rating.count})
+            Rating: {product.rating.rate} ({product.rating.count})
           </p>
           <div className={classes.button_container}>
             <button>Add to cart</button>

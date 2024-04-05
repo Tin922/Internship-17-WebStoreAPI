@@ -20,10 +20,10 @@ const Search = () => {
             id="search"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Upišite ime proizvoda"
+            placeholder="I'm shopping for..."
           />
           <button className={classes.search_button} onClick={handleSubmit}>
-            Pretraži
+            Search
           </button>
         </form>
       </div>
