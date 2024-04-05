@@ -6,6 +6,7 @@ import ProductsPage from "./Pages/ProductsPage/ProductsPage";
 import ProductPage from "./Pages/ProductPage/ProductPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import Registerpage from "./Pages/RegisterPage/RegisterPage";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 function App() {
   return (
     <Router>
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/products" element={<ProductsPage />} />
         <Route exact path="/product/:productId" element={<ProductPage />} />
         <Route exact path="/register" element={<Registerpage />} />
+        <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
