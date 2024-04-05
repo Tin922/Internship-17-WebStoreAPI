@@ -29,3 +29,17 @@
 .form button:hover {
   background-color: #0056b3;
 }
+
+.register {
+  margin-top: 10px;
+}
+
+.register a {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register a:hover {
+  color: #0056b3;
+}
