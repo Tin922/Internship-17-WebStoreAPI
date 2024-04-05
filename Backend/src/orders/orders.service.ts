@@ -22,7 +22,7 @@ export class OrdersService {
     return this.prisma.orders.update({ where: { id }, data: updateOrderDto });
   }
 
-  remove(id: number) {
-    return this.prisma.orders.delete({ where: { id } });
+  remove(id: number, userId: number) {
+    return this.prisma.orders.delete({ where: { id, userId } });
   }
 }

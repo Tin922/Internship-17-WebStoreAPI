@@ -43,15 +43,10 @@ export class OrdersController {
     return this.ordersService.findOne(id, user.id);
   }
 
-  @Patch(':id')
-  @ApiOkResponse({ type: OrdersEntity })
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.ordersService.update(+id, updateOrderDto);
-  }
-
+  @UseGuards(UserAuthGuard)
   @Delete(':id')
   @ApiOkResponse({ type: OrdersEntity })
-  remove(@Param('id') id: string) {
-    return this.ordersService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number, @Req() { user }) {
+    return this.ordersService.remove(id, user.id);
   }
 }
