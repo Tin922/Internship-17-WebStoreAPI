@@ -1,3 +1,4 @@
+import "./App.css";
 import React from "react";
 import Search from "./Components/Search/Search";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -7,6 +8,7 @@ import ProductPage from "./Pages/ProductPage/ProductPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
+
 function App() {
   return (
     <Router>
