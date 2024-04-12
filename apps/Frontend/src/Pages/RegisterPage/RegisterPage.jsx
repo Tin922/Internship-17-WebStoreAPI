@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./index.module.css";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -8,9 +9,27 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ username, email, password });
+
+    try {
+      const response = await fetch("http://localhost:3000/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userName: username, email, password }),
+      });
+
+      if (response.ok) {
+        toast.success("Account created successfully!");
+        navigate("/login");
+      } else {
+        throw new Error("Error when trying to register");
+      }
+    } catch (error) {
+      toast.error("Error when trying to register");
+    }
   };
 
   return (
