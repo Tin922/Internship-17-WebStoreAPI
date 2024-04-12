@@ -14,7 +14,7 @@ const ProductPage = () => {
   const fetchProduct = async () => {
     try {
       const response = await fetch(
-        `https://fakestoreapi.com/products/${productId}`
+        `http://localhost:3000/api/products/${productId}`
       );
       const json = await response.json();
       setProduct(json);

@@ -1,5 +1,14 @@
 import classes from "./index.module.css";
+
 const ProductPageCard = ({ product }) => {
+  const sumOfRatings = product.ratings.reduce(
+    (total, currentRating) => total + currentRating.rating,
+    0
+  );
+
+  const productRating =
+    product.ratings.length > 0 ? sumOfRatings / product.ratings.length : 0;
+
   return (
     <div className={classes.product_card_outer_container}>
       <div className={classes.product_card}>
@@ -11,7 +20,7 @@ const ProductPageCard = ({ product }) => {
           <p>{product.description}</p>
           <p>Price: {product.price} €</p>
           <p>
-            Rating: {product.rating.rate} ({product.rating.count})
+            Rating: {productRating} ({product.ratings.length})
           </p>
           <div className={classes.button_container}>
             <button>Add to cart</button>
