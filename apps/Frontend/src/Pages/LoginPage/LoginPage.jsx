@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./index.module.css";
 import { useUser } from "../../providers/UserProvider/UserProvider";
+import { toast } from "react-hot-toast";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -24,9 +25,10 @@ const LoginPage = () => {
       if (response.ok) {
         const user = await response.json();
         login(user);
+        toast.success("Login successful");
         navigate("/");
       } else {
-        console.error("Login failed");
+        toast.error("Login failed");
       }
     } catch (error) {
       console.error("Error:", error);
