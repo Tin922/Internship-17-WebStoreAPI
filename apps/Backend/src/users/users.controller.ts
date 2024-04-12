@@ -30,8 +30,8 @@ export class UsersController {
   }
 
   @Post('login')
-  login(@Body() { userName, email, password }: LoginDto) {
-    return this.usersService.login(userName, email, password);
+  login(@Body() { email, password }: LoginDto) {
+    return this.usersService.login(email, password);
   }
 
   @UseGuards(AdminAuthGuard)

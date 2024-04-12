@@ -43,7 +43,7 @@ export class UsersService {
     return { token: this.jwtService.sign(payload) };
   }
 
-  async login(userName: string, email: string, password: string) {
+  async login(email: string, password: string) {
     const user = await this.prisma.user.findUnique({
       where: { email },
     });
