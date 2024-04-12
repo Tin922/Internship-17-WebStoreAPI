@@ -11,10 +11,16 @@ export const UserProvider = ({ children }) => {
     setIsLoggedIn(true);
   };
 
+  const logOut = () => {
+    setUser(null);
+    setIsLoggedIn(false);
+  };
+
   const contextValue = {
     user,
     isLoggedIn,
     login,
+    logOut,
   };
 
   return (
