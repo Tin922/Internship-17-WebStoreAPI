@@ -12,6 +12,10 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error("Please fill all fields");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:3000/api/users/login", {
