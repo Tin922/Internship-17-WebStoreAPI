@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./index.module.css";
 import { useUser } from "../../providers/UserProvider/UserProvider";
 import { toast } from "react-hot-toast";
+import Cookies from "universal-cookie";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -28,6 +29,14 @@ const LoginPage = () => {
 
       if (response.ok) {
         const user = await response.json();
+
+        const cookies = new Cookies();
+        cookies.set("token", user.token, {
+          path: "/",
+          sameSite: "None",
+          secure: true,
+        });
+
         login(user);
         toast.success("Login successful");
         navigate("/");
