@@ -5,15 +5,18 @@ import classes from "./index.module.css";
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products`)
+    fetch(`http://localhost:3000/api/products`)
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.log(error));
   }, []);
+
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`, { state: { relatedProducts: products } });
   };
+
   return (
     <>
       <h1>Home Page</h1>
