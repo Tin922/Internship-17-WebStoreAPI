@@ -7,8 +7,14 @@ const ProductPageCard = ({ product }) => {
     0
   );
 
-  const { addToWishList } = useUser();
-
+  const {
+    addToWishList,
+    wishList,
+    isOnWishList,
+    removeFromWishList,
+    findWishListItem,
+  } = useUser();
+  console.log(wishList);
   const productRating =
     product.ratings.length > 0 ? sumOfRatings / product.ratings.length : 0;
 
@@ -27,9 +33,20 @@ const ProductPageCard = ({ product }) => {
           </p>
           <div className={classes.button_container}>
             <button>Add to cart</button>
-            <button onClick={() => addToWishList(product)}>
-              Add to Wishlist
-            </button>
+            {isOnWishList(product.id) ? (
+              <button
+                onClick={() => {
+                  const wishListItemIdToRemove = findWishListItem(product);
+                  removeFromWishList(wishListItemIdToRemove, product);
+                }}
+              >
+                Remove from Wishlist{" "}
+              </button>
+            ) : (
+              <button onClick={() => addToWishList(product)}>
+                Add to Wishlist
+              </button>
+            )}
           </div>
         </div>
       </div>

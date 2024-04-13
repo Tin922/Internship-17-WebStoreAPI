@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import Cookies from "universal-cookie";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 const UserContext = createContext();
 
@@ -11,6 +12,44 @@ export const UserProvider = ({ children }) => {
   const cookie = new Cookies();
   const authToken = cookie.get("token");
 
+  useEffect(() => {
+    const fetchWishListItems = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/wish-list-items`,
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("There was an error");
+        }
+
+        const data = await response.json();
+        setWishList(data);
+      } catch (error) {
+        console.error("Error fetching wishlist items:", error);
+      }
+    };
+
+    if (authToken) {
+      fetchWishListItems();
+    }
+  }, []);
+
+  const isOnWishList = (id) => {
+    return wishList.some((item) => item.productId === id);
+  };
+
+  const findWishListItem = (product) => {
+    const wishListItem = wishList.find(
+      (item) => item.Product.id === product.id
+    );
+    return wishListItem.id;
+  };
   const addToWishList = async (product) => {
     if (!authToken) {
       toast.error("Login to add products to wishlist");
@@ -91,6 +130,8 @@ export const UserProvider = ({ children }) => {
     setWishList,
     addToWishList,
     removeFromWishList,
+    isOnWishList,
+    findWishListItem,
   };
 
   return (
