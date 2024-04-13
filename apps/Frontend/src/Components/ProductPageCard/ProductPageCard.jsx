@@ -1,3 +1,4 @@
+import { useUser } from "../../providers/UserProvider/UserProvider";
 import classes from "./index.module.css";
 
 const ProductPageCard = ({ product }) => {
@@ -5,6 +6,8 @@ const ProductPageCard = ({ product }) => {
     (total, currentRating) => total + currentRating.rating,
     0
   );
+
+  const { addToWishList } = useUser();
 
   const productRating =
     product.ratings.length > 0 ? sumOfRatings / product.ratings.length : 0;
@@ -24,7 +27,9 @@ const ProductPageCard = ({ product }) => {
           </p>
           <div className={classes.button_container}>
             <button>Add to cart</button>
-            <button>Add to Wishlist</button>
+            <button onClick={() => addToWishList(product)}>
+              Add to Wishlist
+            </button>
           </div>
         </div>
       </div>
