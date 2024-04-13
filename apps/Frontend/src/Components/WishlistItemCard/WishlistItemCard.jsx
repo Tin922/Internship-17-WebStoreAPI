@@ -1,6 +1,9 @@
+import { useUser } from "../../providers/UserProvider/UserProvider";
 import classes from "./index.module.css";
 
-const WishlistItemCard = ({ product, onClick }) => {
+const WishlistItemCard = ({ product, wishListItemId, onClick }) => {
+  const { removeFromWishList } = useUser();
+
   return (
     <>
       {" "}
@@ -13,7 +16,9 @@ const WishlistItemCard = ({ product, onClick }) => {
             {product.title}
           </h3>
           <div className={classes.buttons}>
-            <button>Remove from Wishlist</button>
+            <button onClick={() => removeFromWishList(wishListItemId, product)}>
+              Remove from Wishlist
+            </button>
             <button>Add to cart</button>
           </div>
         </div>

@@ -51,6 +51,7 @@ const WishlistPage = () => {
           {wishList.map((wishtListItem) => (
             <WishlistItemCard
               product={wishtListItem.Product}
+              wishListItemId={wishtListItem.id}
               key={wishtListItem.Product.id}
               onClick={() => handleProductClick(wishtListItem.Product.id)}
             />

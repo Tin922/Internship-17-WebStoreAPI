@@ -40,31 +40,33 @@ export const UserProvider = ({ children }) => {
       toast.error("There was an error");
     }
   };
-  const removeFromWishList = async (product) => {
+  const removeFromWishList = async (wishListItemIdToRemove, product) => {
     if (!authToken) {
-      toast.error("Login to add products to wishlist");
+      toast.error("Login to remove products from wishlist");
       return;
     }
+
     try {
       const response = await fetch(
-        `http://localhost:3000/api/wish-list-items`,
+        `http://localhost:3000/api/wish-list-items/${wishListItemIdToRemove}`,
         {
-          method: "POST",
+          method: "DELETE",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${authToken}`,
           },
-          body: JSON.stringify({
-            productId: product.id,
-          }),
         }
       );
-      const data = await response.json();
       if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error response from server:", errorData);
         throw new Error("There was an error");
       }
-      setWishList([...wishList, { id: data.id, product: { ...product } }]);
-      toast.success(`${product.title} is added to wishlist`);
+
+      const wishListAfterRemovingProduct = wishList.filter(
+        (item) => item.id !== wishListItemIdToRemove
+      );
+      toast.success(`${product.title} is removed from wishlist`);
+      setWishList(wishListAfterRemovingProduct);
     } catch (error) {
       toast.error("There was an error");
     }
@@ -88,6 +90,7 @@ export const UserProvider = ({ children }) => {
     wishList,
     setWishList,
     addToWishList,
+    removeFromWishList,
   };
 
   return (
