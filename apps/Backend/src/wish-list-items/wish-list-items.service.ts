@@ -13,7 +13,10 @@ export class WishListItemsService {
   }
 
   findAll(userId: number) {
-    return this.prisma.wishListItem.findMany({ where: { userId } });
+    return this.prisma.wishListItem.findMany({
+      where: { userId },
+      include: { Product: true },
+    });
   }
 
   findOne(productId: number, userId: number) {
